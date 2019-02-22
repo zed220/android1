@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -13,6 +14,7 @@
         <TextView
             android:text="Атакующие:"
             android:textStyle="bold"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <LinearLayout
@@ -21,6 +23,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:text="Отряд:"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Spinner
@@ -35,6 +38,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:text="Жизни:"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Spinner
@@ -54,6 +58,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:text="Расстояние:"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Spinner
@@ -71,6 +76,7 @@
         <TextView
             android:text="Защищающиеся:"
             android:textStyle="bold"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <LinearLayout
@@ -79,6 +85,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:text="Отряд:"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Spinner
@@ -93,6 +100,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:text="Жизни:"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Spinner
@@ -107,6 +115,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:text="Защита:"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Spinner
@@ -120,6 +129,7 @@
     <TextView
         android:text="Результат"
         android:textStyle="bold"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
