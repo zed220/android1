@@ -14,16 +14,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        helloTv = (TextView)findViewById(R.id.hello_tv);
+       /* helloTv = (TextView)findViewById(R.id.hello_tv);
         Button helloBtn = (Button) findViewById(R.id.hello_btn);
 
-        helloBtn.setOnClickListener(onClickListener);
+        helloBtn.setOnClickListener(onClickListener);*/
     }
 
-    private final View.OnClickListener onClickListener = new View.OnClickListener() {
+/*    private final View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             helloTv.setText("Hi!");
         }
-    };
+    };*/
 }
