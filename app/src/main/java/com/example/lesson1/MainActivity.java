@@ -7,11 +7,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView helloTv;
+    ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = new ViewModel();
         setContentView(R.layout.activity_main);
 
        /* helloTv = (TextView)findViewById(R.id.hello_tv);
