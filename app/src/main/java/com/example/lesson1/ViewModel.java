@@ -4,13 +4,13 @@ import java.util.Vector;
 
 public final class ViewModel {
     private Vector<GameUnit> Units;
-    private GameUnit AttackingUnit;
-    private GameUnit DefendingUnit;
+    private GameUnitStatus AttackingUnitStatus;
+    private GameUnitStatus DefendingUnitStatus;
 
     public List<GameUnit> GetUnits() { return Units; }
 
-    public GameUnit GetAttackingUnit() { return AttackingUnit; }
-    public void SetAttackingUnit(GameUnit value) { AttackingUnit = value; }
+    public GameUnit GetAttackingUnit() { return AttackingUnitStatus.GetUnit(); }
+    public void SetAttackingUnit(GameUnit value) { AttackingUnitStatus = new GameUnitStatus(value); }
 
     public GameUnit GetDefendingUnit() { return AttackingUnit; }
     public void SetDefendingUnit(GameUnit value) { DefendingUnit = value; }
