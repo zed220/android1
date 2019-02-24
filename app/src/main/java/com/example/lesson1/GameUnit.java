@@ -1,15 +1,15 @@
 package com.example.lesson1;
 
-import java.util.Vector;
+import java.util.*;
 
 public final class GameUnit {
-    private final GameUnitType Type;
+    public final GameUnitType Type;
     private final int DefaultArmor;
-    private final Vector<AttackInfo> AttackInfoList;
+    private final Dictionary<GameUnitType, List<Integer>> AttackInfoList;
     final Vector<Integer> Distances;
     private final GameUnitMoralInfo MoralInfo;
 
-    public GameUnit(GameUnitType type, int defaultArmor, Vector<AttackInfo> attackInfos, Vector<Integer> distances, GameUnitMoralInfo moralInfo) {
+    public GameUnit(GameUnitType type, int defaultArmor, Dictionary<GameUnitType, List<Integer>> attackInfos, Vector<Integer> distances, GameUnitMoralInfo moralInfo) {
         Type = type;
         DefaultArmor = defaultArmor;
         AttackInfoList = attackInfos;
@@ -17,5 +17,5 @@ public final class GameUnit {
         MoralInfo = moralInfo;
     }
 
-    public AttackInfo GetAttackInfo(int health) { return AttackInfoList.elementAt(health); }
+    public int GetAttackInfo(int health, GameUnitType defendingUnitType) { return AttackInfoList.get(defendingUnitType).get(health); }
 }

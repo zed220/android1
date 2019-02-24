@@ -1,8 +1,5 @@
 package com.example.lesson1;
 
-import java.util.List;
-import java.util.Vector;
-
 public final class GameUnitStatus {
     private final GameUnit Unit;
 
@@ -17,5 +14,8 @@ public final class GameUnitStatus {
 
     public GameUnit GetUnit() { return Unit; }
 
-
+    public AttackingInfo GetAttackingInfo(GameUnitType defendingType) {
+        return new AttackingInfo(Unit.GetAttackInfo(Health, defendingType), Unit.Distances.get(Distance));
+    }
+    public GameUnitType GetUnitType(){ return Unit.Type; }
 }
