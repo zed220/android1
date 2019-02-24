@@ -6,7 +6,7 @@ public final class GameUnit {
     private final GameUnitType Type;
     private final int DefaultArmor;
     private final Vector<AttackInfo> AttackInfoList;
-    private final Vector<Integer> Distances;
+    final Vector<Integer> Distances;
     private final GameUnitMoralInfo MoralInfo;
 
     public GameUnit(GameUnitType type, int defaultArmor, Vector<AttackInfo> attackInfos, Vector<Integer> distances, GameUnitMoralInfo moralInfo) {
