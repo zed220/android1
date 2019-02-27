@@ -3,20 +3,36 @@ package com.example.lesson1;
 import java.util.Random;
 
 public final class CalculationProcessor {
-    static Random Randomizer = new Random(System.currentTimeMillis() % 1000);
+    private static Random Randomizer = new Random(System.currentTimeMillis() % 1000);
 
     private CalculationProcessor() {
     }
 
     public static CalculationResult Calculate(GameUnitStatus attacking, GameUnitStatus defending) {
-        //attacking.Distance
-        //attacking.Health
         AttackingInfo attackingInfo = attacking.GetAttackingInfo(defending.GetUnitType());
-        for(int i = 0; i < attackingInfo.DiceCount; i++){
-            int dice = Randomizer.nextInt(6) + 1;
-
+        int decHealth = 0;
+        int decArmor = 0;
+        boolean isPanic = false;
+        int diceCount = attacking.SuppressFire ? (int)Math.floor(attackingInfo.DiceCount * 1.5) : attackingInfo.DiceCount;
+        for(int i = 0; i < diceCount; i++){
+            int diceResult = Randomizer.nextInt(6) + 1;
+            if(diceResult > attackingInfo.MinDiceValue)
+                continue;
+            if(decArmor > 0) {
+                decArmor++;
+                continue;
+            }
+            if(decHealth > 0)
+                decHealth++;
         }
-
+        if(attacking.SuppressFire || decHealth > 0) {
+            GameUnitMoralInfo moralInfo = attacking.GetMoral();
+            int diceSum = 0;
+            for(int i = 0; i < moralInfo.DiceCount; i++) {
+                diceSum += Randomizer.nextInt(6) + 1;
+            }
+            isPanic = diceSum > (moralInfo.Maximum - (defending.GetMaxHealth() - defending.Health - decHealth));
+        }
         return new CalculationResult(isPanic, decArmor, decHealth);
     }
 }

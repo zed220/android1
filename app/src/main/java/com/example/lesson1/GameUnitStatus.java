@@ -18,4 +18,6 @@ public final class GameUnitStatus {
         return new AttackingInfo(Unit.GetAttackInfo(Health, defendingType), Unit.Distances.get(Distance));
     }
     public GameUnitType GetUnitType(){ return Unit.Type; }
+    public GameUnitMoralInfo GetMoral() { return Unit.MoralInfo; }
+    public int GetMaxHealth() { return Unit.Health; }
 }

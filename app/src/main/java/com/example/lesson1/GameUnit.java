@@ -3,19 +3,27 @@ package com.example.lesson1;
 import java.util.*;
 
 public final class GameUnit {
+    private final String Name;
     public final GameUnitType Type;
     private final int DefaultArmor;
-    private final Dictionary<GameUnitType, List<Integer>> AttackInfoList;
+    private final Hashtable<GameUnitType, int[]> AttackInfoList;
     final Vector<Integer> Distances;
-    private final GameUnitMoralInfo MoralInfo;
+    final GameUnitMoralInfo MoralInfo;
+    final int Health;
 
-    public GameUnit(GameUnitType type, int defaultArmor, Dictionary<GameUnitType, List<Integer>> attackInfos, Vector<Integer> distances, GameUnitMoralInfo moralInfo) {
+    public GameUnit(String name, GameUnitType type, int defaultArmor, Hashtable<GameUnitType, int[]> attackInfos, Vector<Integer> distances, GameUnitMoralInfo moralInfo) {
+        Name = name;
         Type = type;
         DefaultArmor = defaultArmor;
         AttackInfoList = attackInfos;
         Distances = distances;
         MoralInfo = moralInfo;
+        Health = AttackInfoList.get(GameUnitType.INFANTRY).length;
     }
 
-    public int GetAttackInfo(int health, GameUnitType defendingUnitType) { return AttackInfoList.get(defendingUnitType).get(health); }
+    public String toString(){
+        return Name;
+    }
+
+    public int GetAttackInfo(int health, GameUnitType defendingUnitType) { return AttackInfoList.get(defendingUnitType)[health]; }
 }
