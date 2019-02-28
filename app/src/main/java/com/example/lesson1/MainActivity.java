@@ -1,9 +1,15 @@
 package com.example.lesson1;
 
+import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     ViewModel viewModel;
@@ -16,11 +22,18 @@ public class MainActivity extends AppCompatActivity {
     Spinner sp_DefendHealth;
     Spinner sp_DefendArmor;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = new ViewModel();
+        try {
+            viewModel = new ViewModel(getBaseContext().getResources());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
         ((Button)findViewById(R.id.clear_btn)).setOnClickListener(clearButtonListener);
         ((Button)findViewById(R.id.calculate_btn)).setOnClickListener(calculateButtonListener);
         FillUIElements();

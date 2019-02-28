@@ -1,5 +1,11 @@
 package com.example.lesson1;
 
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.util.*;
 
 public final class ViewModel {
@@ -10,8 +16,8 @@ public final class ViewModel {
     private final List<OnChangeGameUnitListener> OnChangeAttackingGameUnitListeners = new Vector<OnChangeGameUnitListener>();
     private final List<OnChangeGameUnitListener> OnChangeDefendingGameUnitListeners = new Vector<OnChangeGameUnitListener>();
 
-    public ViewModel(){
-        Units = new Vector<GameUnit>();
+    public ViewModel(Resources resources) throws IOException, XmlPullParserException {
+        Units = GameUnitsLoader.GetAllUnits(resources);
         Hashtable<GameUnitType, int[]> distances = new Hashtable<>();
         distances.put(GameUnitType.INFANTRY, new int[] { 9, 8, 7, 6, 5 });
         Units.add(new GameUnit("Советская пехота", GameUnitType.INFANTRY, 1, distances, new Vector<Integer>(), new GameUnitMoralInfo(8, 1)));
