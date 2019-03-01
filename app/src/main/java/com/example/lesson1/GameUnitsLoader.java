@@ -17,31 +17,95 @@ public final class GameUnitsLoader {
 
     public static Vector<GameUnit> GetAllUnits(Resources resources) throws IOException, XmlPullParserException {
         Vector<GameUnit> result = new Vector<>();
-        XmlPullParser parser1 = resources.getXml(R.xml.units);
-        @SuppressLint("ResourceType") InputStream in = resources.openRawResource(R.xml.units);
-        try {
-            XmlPullParser parser = resources.getXml(R.xml.units);
-            //parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            //parser.setInput(in, "utf8");
-            //parser.nextTag();
-            while (parser.next() != XmlPullParser.END_TAG) {
-                if (parser.getEventType() != XmlPullParser.START_TAG) {
-                    continue;
-                }
-                String name = parser.getName();
-                //if (name.equals("title")) {
-                //    title = readTitle(parser);
-                //} else if (name.equals("summary")) {
-                //    summary = readSummary(parser);
-                //} else if (name.equals("link")) {
-                //    link = readLink(parser);
-                //} else {
-                //    skip(parser);
-                //}
+
+        XmlPullParser parser = resources.getXml(R.xml.units);
+        while (parser.next() != XmlPullParser.END_DOCUMENT) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
             }
-        } finally {
-            in.close();
+            String tagName = parser.getName();
+            if(tagName.equals("unit"))
+                result.add(ParseUnit(parser));
         }
         return result;
+    }
+
+    private static GameUnit ParseUnit(XmlPullParser parser) throws IOException, XmlPullParserException {
+        String name = null;
+        GameUnitType type = GameUnitType.INFANTRY;
+        int armor = -1;
+        int[] distances = null;
+        int moralTotal = -1;
+        int moralDec = -1;
+        int moralDice = -1;
+        Hashtable<GameUnitType, int[]> attacks = null;
+        for(int i = 0; i < parser.getAttributeCount(); i++){
+            switch (parser.getAttributeName(i)){
+                case "name": name = parser.getAttributeValue(i);
+                    break;
+                case "type": type = GameUnitType.valueOf(parser.getAttributeValue(i));
+                    break;
+                case "armor": armor = Integer.valueOf(parser.getAttributeValue(i));
+                    break;
+                case "distances": distances = GetIntArr(parser.getAttributeValue(i));
+                    break;
+                case "moralTotal": moralTotal = Integer.valueOf(parser.getAttributeValue(i));
+                    break;
+                case "moralDec": moralDec = Integer.valueOf(parser.getAttributeValue(i));
+                    break;
+                case "moralDice": moralDice = Integer.valueOf(parser.getAttributeValue(i));
+                    break;
+            }
+        }
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String tagName = parser.getName();
+            if(tagName.equals("attackList"))
+                attacks = GetAttacks(parser);
+        }
+        return new GameUnit(name, type, armor, attacks, distances, new GameUnitMoralInfo(moralTotal, moralDec, moralDice));
+    }
+
+    private static Hashtable<GameUnitType, int[]> GetAttacks(XmlPullParser parser) throws IOException, XmlPullParserException {
+        Hashtable<GameUnitType, int[]> result = new Hashtable<>();
+        while (parser.next() != XmlPullParser.END_DOCUMENT) {
+            if(parser.getEventType() == XmlPullParser.END_TAG){
+                if(parser.getName().equals("attackList"))
+                    return  result;
+            }
+
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String tagName = parser.getName();
+            if(!tagName.equals("attackInfo"))
+                continue;
+            GameUnitType type = GameUnitType.INFANTRY;
+            int[] dices = null;
+            for(int i = 0; i < parser.getAttributeCount(); i++){
+                switch (parser.getAttributeName(i)){
+                    case "type": type = GameUnitType.valueOf(parser.getAttributeValue(i));
+                        break;
+                    case "values": dices = GetIntArr(parser.getAttributeValue(i));
+                        break;
+                }
+            }
+            result.put(type, dices);
+        }
+
+        return result;
+    }
+
+    static int[] GetIntArr(String source) {
+        String[] integersAsText = source.split(",");
+        int[] results = new int[ integersAsText.length ];
+        int i = 0;
+        for(String textValue : integersAsText) {
+            results[i] = Integer.parseInt(textValue);
+            i++;
+        }
+        return results;
     }
 }

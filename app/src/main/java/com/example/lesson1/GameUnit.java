@@ -7,11 +7,11 @@ public final class GameUnit {
     public final GameUnitType Type;
     private final int DefaultArmor;
     private final Hashtable<GameUnitType, int[]> AttackInfoList;
-    final Vector<Integer> Distances;
+    final int[] Distances;
     final GameUnitMoralInfo MoralInfo;
     final int Health;
 
-    public GameUnit(String name, GameUnitType type, int defaultArmor, Hashtable<GameUnitType, int[]> attackInfos, Vector<Integer> distances, GameUnitMoralInfo moralInfo) {
+    public GameUnit(String name, GameUnitType type, int defaultArmor, Hashtable<GameUnitType, int[]> attackInfos, int[] distances, GameUnitMoralInfo moralInfo) {
         Name = name;
         Type = type;
         DefaultArmor = defaultArmor;

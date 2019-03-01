@@ -15,7 +15,7 @@ public final class GameUnitStatus {
     public GameUnit GetUnit() { return Unit; }
 
     public AttackingInfo GetAttackingInfo(GameUnitType defendingType) {
-        return new AttackingInfo(Unit.GetAttackInfo(Health, defendingType), Unit.Distances.get(Distance));
+        return new AttackingInfo(Unit.GetAttackInfo(Health, defendingType), Unit.Distances[Distance]);
     }
     public GameUnitType GetUnitType(){ return Unit.Type; }
     public GameUnitMoralInfo GetMoral() { return Unit.MoralInfo; }

@@ -2,7 +2,13 @@
 <units xmlns:android="http://schemas.android.com/apk/res/android">
     <unit name="Советская пехота" type="INFANTRY" armor="1" distances="2,2,1,1" moralTotal="8" moralDec="1" moralDice="2">
         <attackList>
-            <attackInfo type="INFANTRY" values="9,7,6,3,2"/>
+            <attackInfo type="INFANTRY" values="9,7,5,3,2"/>
+            <attackInfo type="GUN" values="9,7,4,2,1"/>
+        </attackList>
+    </unit>
+    <unit name="Немецкая пехота" type="INFANTRY" armor="1" distances="2,2,1,1" moralTotal="8" moralDec="1" moralDice="2">
+        <attackList>
+            <attackInfo type="INFANTRY" values="9,7,5,3,2"/>
             <attackInfo type="GUN" values="9,7,4,2,1"/>
         </attackList>
     </unit>
