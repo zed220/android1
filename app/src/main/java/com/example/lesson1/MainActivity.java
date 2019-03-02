@@ -31,14 +31,15 @@ public class MainActivity extends AppCompatActivity {
             viewModel = new ViewModel(getBaseContext().getResources());
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(0);
         } catch (XmlPullParserException e) {
             e.printStackTrace();
+            System.exit(0);
         }
         ((Button)findViewById(R.id.clear_btn)).setOnClickListener(clearButtonListener);
         ((Button)findViewById(R.id.calculate_btn)).setOnClickListener(calculateButtonListener);
         FillUIElements();
         ArrayAdapter<GameUnit> adapter = new ArrayAdapter<GameUnit>(this, android.R.layout.simple_spinner_item, viewModel.GetUnits());
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_AttackType.setAdapter(adapter);
 
         viewModel.AddOnChangeAttackingGameUnitListener(attackChangedListener);
