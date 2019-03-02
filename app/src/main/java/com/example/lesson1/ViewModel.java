@@ -18,11 +18,16 @@ public final class ViewModel {
 
     public ViewModel(Resources resources) throws IOException, XmlPullParserException {
         Units = GameUnitsLoader.GetAllUnits(resources);
+        Clear();
     }
 
     public List<GameUnit> GetUnits() { return Units; }
 
     public GameUnit GetAttackingUnit() { return AttackingUnitStatus.GetUnit(); }
+
+    public GameUnitStatus GetAttackingUnitStatus() { return AttackingUnitStatus; }
+    public GameUnitStatus getDefendingUnitStatus() { return DefendingUnitStatus; }
+
     public void SetAttackingUnit(GameUnit value) {
         AttackingUnitStatus = new GameUnitStatus(value);
         for(OnChangeGameUnitListener listener : OnChangeAttackingGameUnitListeners)
@@ -44,8 +49,8 @@ public final class ViewModel {
     }
 
     public void Clear(){
-        SetAttackingUnit(null);
-        SetDefendingUnit(null);
+        SetAttackingUnit(GetUnits().get(0));
+        SetDefendingUnit(GetUnits().get(0));
     }
 
     public void Calculate() {

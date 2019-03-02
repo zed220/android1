@@ -5,7 +5,7 @@ import java.util.*;
 public final class GameUnit {
     private final String Name;
     public final GameUnitType Type;
-    private final int DefaultArmor;
+    public final int Armor;
     private final Hashtable<GameUnitType, int[]> AttackInfoList;
     final int[] Distances;
     final GameUnitMoralInfo MoralInfo;
@@ -14,7 +14,7 @@ public final class GameUnit {
     public GameUnit(String name, GameUnitType type, int defaultArmor, Hashtable<GameUnitType, int[]> attackInfos, int[] distances, GameUnitMoralInfo moralInfo) {
         Name = name;
         Type = type;
-        DefaultArmor = defaultArmor;
+        Armor = defaultArmor;
         AttackInfoList = attackInfos;
         Distances = distances;
         MoralInfo = moralInfo;
