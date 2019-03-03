@@ -53,7 +53,7 @@ public final class ViewModel {
         SetDefendingUnit(GetUnits().get(0));
     }
 
-    public void Calculate() {
-
+    public CalculationResult Calculate() {
+        return CalculationProcessor.Calculate(GetAttackingUnitStatus(), getDefendingUnitStatus());
     }
 }

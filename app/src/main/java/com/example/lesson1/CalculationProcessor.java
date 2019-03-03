@@ -18,12 +18,11 @@ public final class CalculationProcessor {
             int diceResult = Randomizer.nextInt(6) + 1;
             if(diceResult > attackingInfo.MinDiceValue)
                 continue;
-            if(decArmor > 0) {
+            if(defending.Armor > decArmor) {
                 decArmor++;
                 continue;
             }
-            if(decHealth > 0)
-                decHealth++;
+            decHealth++;
         }
         if(attacking.SuppressFire || decHealth > 0) {
             GameUnitMoralInfo moralInfo = attacking.GetMoral();
