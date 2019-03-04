@@ -32,6 +32,6 @@ public final class CalculationProcessor {
             }
             isPanic = diceSum > (moralInfo.Maximum - (defending.GetMaxHealth() - defending.Health - decHealth));
         }
-        return new CalculationResult(isPanic, decArmor, decHealth);
+        return new CalculationResult(isPanic, defending.Armor, decArmor, defending.Health, decHealth);
     }
 }

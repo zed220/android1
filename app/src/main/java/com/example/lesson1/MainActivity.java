@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private static Integer[] IterateIntAsArray(int value, boolean canNull) {
         Integer[] result = new Integer[value + (canNull ? 1 : 0)];
-        for(int i = 0; i < value; i++) {
+        for(int i = 0; i < value + (canNull ? 1 : 0); i++) {
             result[i] = i + (canNull ? 0 : 1);
         }
         return result;
@@ -229,7 +229,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             CalculationResult result = viewModel.Calculate();
-            tv_Result.setText(String.format("Dec Armor: %d, Dec Health: %d, Panic: %s", result.DecArmor, result.DecHealth, result.IsPanic));
+            int actualHealth = Math.max(0, result.Health - result.DecHealth);
+            String str_Result = String.format("Броня: %d-%d=%d, Жизни: %d-%d=%d.",
+                    result.Armor, result.DecArmor, result.Armor - result.DecArmor,
+                    result.Health, result.DecHealth, actualHealth);
+            if(result.IsPanic)
+                str_Result += "Отряд паникует!";
+            if(actualHealth == 0)
+                str_Result += "Отряд уничтожен!";
+            tv_Result.setText(str_Result);
         }
     };
 }

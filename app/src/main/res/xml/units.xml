@@ -12,16 +12,28 @@
             <attackInfo type="GUN" values="8,6,4,2,1"/>
         </attackList>
     </unit>
-    <unit name="Немецкая пехота" type="INFANTRY" armor="1" distances="2,2,1,1" moralTotal="8" moralDec="1" moralDice="2">
-        <attackList>
-            <attackInfo type="INFANTRY" values="9,7,5,3,2"/>
-            <attackInfo type="GUN" values="9,7,4,2,1"/>
-        </attackList>
-    </unit>
     <unit name="Советские бронебойщики" type="INFANTRY" armor="1" distances="2,2,2,1" moralTotal="7" moralDec="2" moralDice="2">
         <attackList>
             <attackInfo type="INFANTRY" values="3,1"/>
             <attackInfo type="GUN" values="6,4"/>
+        </attackList>
+    </unit>
+    <unit name="Советский пулемёт максим" type="INFANTRY" armor="1" distances="3,3,2,1" moralTotal="7" moralDec="2" moralDice="2">
+        <attackList>
+            <attackInfo type="INFANTRY" values="10,6"/>
+            <attackInfo type="GUN" values="10,5"/>
+        </attackList>
+    </unit>
+    <unit name="Советская 37-мм орудие 61К" type="GUN" armor="1" distances="3,3,2,2,1" moralTotal="8" moralDec="2" moralDice="2">
+        <attackList>
+            <attackInfo type="INFANTRY" values="9,6,3"/>
+            <attackInfo type="GUN" values="8,5,2"/>
+        </attackList>
+    </unit>
+    <unit name="Немецкая пехота" type="INFANTRY" armor="1" distances="2,2,1,1" moralTotal="8" moralDec="1" moralDice="2">
+        <attackList>
+            <attackInfo type="INFANTRY" values="9,7,5,3,2"/>
+            <attackInfo type="GUN" values="9,7,4,2,1"/>
         </attackList>
     </unit>
     <unit name="Немецкая противотанковая пушка PAK-40" type="GUN" armor="1" distances="2,2,2,1,1" moralTotal="8" moralDec="2" moralDice="2">
