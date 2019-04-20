@@ -24,14 +24,17 @@ public final class CalculationProcessor {
             }
             decHealth++;
         }
-        if(attacking.SuppressFire || decHealth > 0) {
-            GameUnitMoralInfo moralInfo = attacking.GetMoral();
-            int diceSum = 0;
-            for(int i = 0; i < moralInfo.DiceCount; i++) {
-                diceSum += Randomizer.nextInt(6) + 1;
-            }
-            isPanic = diceSum > (moralInfo.Maximum - (defending.GetMaxHealth() - defending.Health - decHealth));
-        }
+        if(!isPanic || attacking.SuppressFire || decHealth > 0)
+            isPanic = IsPanic(defending, defending.Health - decHealth);
         return new CalculationResult(isPanic, defending.Armor, decArmor, defending.Health, decHealth);
+    }
+
+    public static boolean IsPanic(GameUnitStatus unit, int actualHealth){
+        GameUnitMoralInfo moralInfo = unit.GetMoral();
+        int diceSum = 0;
+        for(int i = 0; i < moralInfo.DiceCount; i++) {
+            diceSum += Randomizer.nextInt(6) + 1;
+        }
+        return diceSum > (moralInfo.Maximum - (unit.GetMaxHealth() - actualHealth));
     }
 }

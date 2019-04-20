@@ -56,4 +56,7 @@ public final class ViewModel {
     public CalculationResult Calculate() {
         return CalculationProcessor.Calculate(GetAttackingUnitStatus(), getDefendingUnitStatus());
     }
+    public boolean IsAttackingUnitInPanic() {
+        return CalculationProcessor.IsPanic(GetAttackingUnitStatus(), GetAttackingUnitStatus().Health);
+    }
 }

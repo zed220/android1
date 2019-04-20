@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             System.exit(0);
         }
+        ((Button)findViewById(R.id.checkpanic_btn)).setOnClickListener(checkpanicButtonListener);
         ((Button)findViewById(R.id.clear_btn)).setOnClickListener(clearButtonListener);
         ((Button)findViewById(R.id.calculate_btn)).setOnClickListener(calculateButtonListener);
         FillUIElements();
@@ -95,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
 
         tv_Result.setText(null);
     }
-    private static Integer[] IterateIntAsArray(int value, boolean canNull) {
-        Integer[] result = new Integer[value + (canNull ? 1 : 0)];
-        for(int i = 0; i < value + (canNull ? 1 : 0); i++) {
-            result[i] = i + (canNull ? 0 : 1);
+    private static Integer[] IterateIntAsArray(int value, boolean startFromNull) {
+        Integer[] result = new Integer[value];
+        for(int i = 0; i < value; i++) {
+            result[i] = i + (startFromNull ? 0 : 1);
         }
         return result;
     }
@@ -219,6 +220,15 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private final View.OnClickListener checkpanicButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            tv_Result.setText("");
+            boolean isPanic = viewModel.IsAttackingUnitInPanic();
+            tv_Result.setText(isPanic ? "Атакующий юнит паникует!" : "Атакующий юнит в норме");
+
+        }
+    };
     private final View.OnClickListener clearButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -228,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
     private final View.OnClickListener calculateButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            tv_Result.setText("");
             CalculationResult result = viewModel.Calculate();
             int actualHealth = Math.max(0, result.Health - result.DecHealth);
             String str_Result = String.format("Броня: %d-%d=%d, Жизни: %d-%d=%d.",
