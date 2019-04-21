@@ -12,7 +12,6 @@ public final class CalculationProcessor {
         AttackingInfo attackingInfo = attacking.GetAttackingInfo(defending.GetUnitType());
         int decHealth = 0;
         int decArmor = 0;
-        boolean isPanic = false;
         int diceCount = attacking.SuppressFire ? (int)Math.floor(attackingInfo.DiceCount * 1.5) : attackingInfo.DiceCount;
         for(int i = 0; i < diceCount; i++){
             int diceResult = Randomizer.nextInt(6) + 1;
@@ -24,7 +23,8 @@ public final class CalculationProcessor {
             }
             decHealth++;
         }
-        if(!isPanic || attacking.SuppressFire || decHealth > 0)
+        boolean isPanic = false;
+        if(attacking.SuppressFire || decHealth > 0)
             isPanic = IsPanic(defending, defending.Health - decHealth);
         return new CalculationResult(isPanic, defending.Armor, decArmor, defending.Health, decHealth);
     }
