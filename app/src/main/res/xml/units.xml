@@ -6,10 +6,13 @@
             <attackInfo type="GUN" values="9,7,4,2,1"/>
         </attackList>
     </unit>
-    <unit name="Советская пехота" type="INFANTRY" armor="1" distances="2,2,1,1" moralTotal="7" moralDec="1" moralDice="2">
+    <unit name="Советская пехота" type="INFANTRY" armor="1" distances="2,2,1,1" moralTotal="7" moralDec="1" moralDice="2" tankFear="true">
         <attackList>
             <attackInfo type="INFANTRY" values="8,6,4,3,2"/>
             <attackInfo type="GUN" values="8,6,4,2,1"/>
+            <attackInfo type="LIGHTTANK" values="5,4,3,2,1"/>
+            <attackInfo type="MEDIUMTANK" values="4,3,2,1,1"/>
+            <attackInfo type="HEAVYTANK" values="0,0,0,0,0"/>
         </attackList>
     </unit>
     <unit name="Советские бронебойщики" type="INFANTRY" armor="1" distances="2,2,2,1" moralTotal="7" moralDec="2" moralDice="2">
@@ -18,10 +21,13 @@
             <attackInfo type="GUN" values="6,4"/>
         </attackList>
     </unit>
-    <unit name="Советский пулемёт максим" type="INFANTRY" armor="1" distances="3,3,2,1" moralTotal="7" moralDec="2" moralDice="2">
+    <unit name="Советский пулемёт максим" type="INFANTRY" armor="1" distances="3,3,2,1" moralTotal="7" moralDec="2" moralDice="2" tankFear="true">
         <attackList>
             <attackInfo type="INFANTRY" values="10,6"/>
             <attackInfo type="GUN" values="10,5"/>
+            <attackInfo type="LIGHTTANK" values="2,1"/>
+            <attackInfo type="MEDIUMTANK" values="2б1"/>
+            <attackInfo type="HEAVYTANK" values="0,0"/>
         </attackList>
     </unit>
     <unit name="Советская 37-мм орудие 61К" type="GUN" armor="1" distances="3,3,2,2,1" moralTotal="8" moralDec="2" moralDice="2">
@@ -40,6 +46,24 @@
         <attackList>
             <attackInfo type="INFANTRY" values="11,9,7"/>
             <attackInfo type="GUN" values="12,10,8"/>
+        </attackList>
+    </unit>
+    <unit name="Штурмтигр" type="HEAVYTANK" armor="5" distances="3,4,4,4,4,3" moralTotal="9" moralDec="1" moralDice="2">
+        <attackList>
+            <attackInfo type="INFANTRY" values="18,16,14"/>
+            <attackInfo type="GUN" values="19,17,15"/>
+            <attackInfo type="LIGHTTANK" values="19,17,15"/>
+            <attackInfo type="MEDIUMTANK" values="18,16,14"/>
+            <attackInfo type="HEAVYTANK" values="17,15,13"/>
+        </attackList>
+    </unit>
+    <unit name="Фердинанд" type="HEAVYTANK" armor="5" distances="4,4,4,4,3,3" moralTotal="9" moralDec="1" moralDice="2">
+        <attackList>
+            <attackInfo type="INFANTRY" values="13,12,11"/>
+            <attackInfo type="GUN" values="15,13,11"/>
+            <attackInfo type="LIGHTTANK" values="17,16,15"/>
+            <attackInfo type="MEDIUMTANK" values="16,15,14"/>
+            <attackInfo type="HEAVYTANK" values="16,14,12"/>
         </attackList>
     </unit>
 </units>

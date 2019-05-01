@@ -65,7 +65,7 @@ public final class GameUnitsLoader {
             if(tagName.equals("attackList"))
                 attacks = GetAttacks(parser);
         }
-        return new GameUnit(name, type, armor, attacks, distances, new GameUnitMoralInfo(moralTotal, moralDec, moralDice));
+        return new GameUnit(name, type, armor, attacks, distances, new GameUnitMoralInfo(moralTotal, moralDec, moralDice), false);
     }
     private static void ReverseArray(int[] validData){
         for(int i = 0; i < validData.length / 2; i++) {

@@ -10,14 +10,16 @@ public final class GameUnit {
     final int[] Distances;
     final GameUnitMoralInfo MoralInfo;
     final int Health;
+    final boolean TankFear;
 
-    public GameUnit(String name, GameUnitType type, int defaultArmor, Hashtable<GameUnitType, int[]> attackInfos, int[] distances, GameUnitMoralInfo moralInfo) {
+    public GameUnit(String name, GameUnitType type, int defaultArmor, Hashtable<GameUnitType, int[]> attackInfos, int[] distances, GameUnitMoralInfo moralInfo, boolean tankFear) {
         Name = name;
         Type = type;
         Armor = defaultArmor;
         AttackInfoList = attackInfos;
         Distances = distances;
         MoralInfo = moralInfo;
+        TankFear = tankFear;
         Health = AttackInfoList.get(GameUnitType.INFANTRY).length;
     }
 

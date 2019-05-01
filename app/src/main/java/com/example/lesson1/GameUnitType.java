@@ -1,5 +1,5 @@
 package com.example.lesson1;
 
 public enum GameUnitType {
-    GUN, INFANTRY
+    GUN, INFANTRY, LIGHTTANK, MEDIUMTANK, HEAVYTANK
 }
